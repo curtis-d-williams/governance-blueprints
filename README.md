@@ -17,3 +17,24 @@ Start here:
 - MULTI_GUARDIAN_STRATEGY.md
 - COMPOSITION_CHECKLIST.md
 - CONTRACT_GLOSSARY.md
+
+---
+
+## Reference Implementations
+
+The following repositories apply the governance patterns defined here:
+
+### mcp-governance-orchestrator
+https://github.com/curtis-d-williams/mcp-governance-orchestrator
+
+Implements:
+- Deterministic guardian coordination
+- Canonical JSON output
+- Explicit execution vs policy semantics (see docs/SEMANTICS.md)
+- Fail-closed behavior at guardian level
+- Reproducible clean-room validation
+- Versioned governance hardening (v0.2.4)
+
+This repository serves as a Tier 1+ reference for multi-guardian orchestration.
+
+Additional guardians and MCP implementations will be listed here as they reach Tier 1 maturity.
