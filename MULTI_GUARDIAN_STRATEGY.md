@@ -119,6 +119,49 @@ Portfolio goal:
 - every guardian reaches Tier 1
 - the orchestrator + representative guardian sets reach Tier 2
 
+
+---
+
+## Tier 3 Operationalization (Release Gating)
+
+Tier 3 does not introduce new schemas or change V1 semantics.
+It formalizes how consumers (CI/CD, agents, humans) should use the existing V1 aggregation outputs
+to make release decisions reproducibly.
+
+### Release-Gating Decision Model (Reference)
+
+Given a single orchestrator run:
+
+Gate outcomes:
+- PASS: policy_ok == true AND policy_fail_closed == false
+- FAIL_CLOSED: policy_fail_closed == true
+- FAIL: policy_ok == false AND policy_fail_closed == false
+
+Interpretation notes:
+- execution_ok indicates whether the orchestrator produced an output artifact deterministically.
+- policy_* values are authoritative for compliance/gating decisions.
+- If execution_ok == false, treat the run as invalid evidence and re-run deterministically (do not “pass” on missing evidence).
+
+### Evidence Requirements (Minimum)
+
+A Tier 3 gating setup MUST:
+- store the canonical JSON artifact produced by the orchestrator run
+- record the exact guardian set (ids + versions) invoked
+- ensure output is canonicalized (stable sort order; no timestamps)
+- support clean-room reproducibility (a third party can re-run and obtain byte-identical output)
+
+### Change-Control Playbook (V1 vs V2)
+
+Allowed under V1 (docs/governance only):
+- tighten wording, clarify semantics, add examples
+- add additional reference runs / evidence artifacts
+- improve consumer guidance without changing interpretation rules
+
+Triggers V2 (requires migration notes):
+- any schema expansion (new output fields)
+- any change to aggregation semantics
+- any behavior change that could alter ok/fail_closed meaning or determinism properties
+
 ---
 
 ## Composition Invariants (What Must Always Hold)
