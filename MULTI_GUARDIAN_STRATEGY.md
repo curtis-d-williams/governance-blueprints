@@ -150,6 +150,57 @@ A Tier 3 gating setup MUST:
 - ensure output is canonicalized (stable sort order; no timestamps)
 - support clean-room reproducibility (a third party can re-run and obtain byte-identical output)
 
+
+
+---
+
+## Worked Example: Tier 3 Release Gating
+
+Assume the orchestrator runs with:
+
+- guardians = ["mcp-release-guardian:v1", "mcp-repo-sanity-guardian:v1"]
+
+The canonical JSON artifact is produced deterministically.
+
+Derived aggregation values:
+
+- execution_ok = true
+- policy_ok = true
+- policy_fail_closed = false
+
+Gate outcome:
+- PASS
+
+The artifact (canonical JSON) is stored alongside:
+- guardian ids and versions
+- commit SHA under evaluation
+- timestamp of orchestration run (external to canonical artifact)
+
+---
+
+Alternate scenario:
+
+- execution_ok = true
+- policy_ok = false
+- policy_fail_closed = true
+
+Gate outcome:
+- FAIL_CLOSED
+
+Interpretation:
+- A guardian could not evaluate reliably or explicitly fail-closed.
+- The release must not proceed.
+- Investigation required before re-run.
+
+---
+
+Critical property:
+
+In both cases, a third party can re-run the orchestrator with the same inputs
+and obtain a byte-identical canonical JSON artifact.
+
+This reproducibility is the foundation of Tier 3 governance.
+
 ### Change-Control Playbook (V1 vs V2)
 
 Allowed under V1 (docs/governance only):
