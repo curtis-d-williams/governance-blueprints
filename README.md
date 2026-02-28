@@ -38,4 +38,16 @@ Implements:
 
 This repository serves as a Tier 1+ reference for multi-guardian orchestration.
 
+
+### mcp-repo-sanity-guardian
+https://github.com/curtis-d-williams/mcp-repo-sanity-guardian
+
+Implements:
+- Minimal deterministic, read-only guardian
+- Fail-closed evaluation posture
+- No network calls
+- Used in Tier 2 deterministic composition proof (v0.2.5 orchestrator)
+
+This repository serves as a minimal reference guardian for composability validation.
+
 Additional guardians and MCP implementations will be listed here as they reach Tier 1 maturity.
