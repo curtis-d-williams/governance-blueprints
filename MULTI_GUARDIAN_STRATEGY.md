@@ -62,6 +62,20 @@ Define the following derived values for consumers (CI/CD, agents, humans):
 - policy_ok = ALL(guardian.ok == true) across invoked guardians
 - policy_fail_closed = ANY(guardian.fail_closed == true) across invoked guardians
 
+---
+
+## Tier 2 Proof (Reference Evidence)
+
+Authoritative reference implementation: mcp-governance-orchestrator (tag v0.2.5).
+
+Evidence:
+- Tier 2 two-guardian composition proof captured in docs/EXAMPLE_OUTPUTS.md
+- Clean-room reproducibility verified; canonical JSON output confirmed byte-identical across runs
+- No schema changes; no behavioral changes; V1 contract remains frozen
+
+This milestone demonstrates composable governance under deterministic aggregation using the consumer-side formulas above.
+
+
 Important:
 - orchestrator.ok MUST NOT be treated as policy_ok
 - orchestrator.fail_closed MUST NOT be treated as policy_fail_closed unless the orchestrator itself cannot operate deterministically

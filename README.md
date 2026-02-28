@@ -33,7 +33,8 @@ Implements:
 - Explicit execution vs policy semantics (see docs/SEMANTICS.md)
 - Fail-closed behavior at guardian level
 - Reproducible clean-room validation
-- Versioned governance hardening (v0.2.4)
+- Versioned governance hardening (v0.2.5)
+- Tier 2 deterministic multi-guardian composition proof documented in docs/EXAMPLE_OUTPUTS.md (byte-identical, clean-room reproducible)
 
 This repository serves as a Tier 1+ reference for multi-guardian orchestration.
 
